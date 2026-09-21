@@ -467,29 +467,11 @@
         /* Затемнение изображения */
 
         .image-wrapper::after {
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(13,17,16,0.05),
-                    rgba(13,17,16,0.45)
-                ),
-
-                linear-gradient(
-                    90deg,
-                    rgba(214,154,69,0.06),
-                    transparent 30%,
-                    transparent 70%,
-                    rgba(0,0,0,0.25)
-                );
-
-            pointer-events: none;
-        }
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
 
 
         /* Техническая надпись */
