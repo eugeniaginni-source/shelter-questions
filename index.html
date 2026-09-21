@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Убежище — вопросы для обсуждения</title>
+
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* ========================================
+           ЦВЕТА
+        ======================================== */
+
+        :root {
+            --background: #0d1110;
+            --metal-dark: #171c1a;
+            --metal: #252b29;
+            --metal-light: #3a423e;
+
+            --text: #d8d8cf;
+            --text-muted: #858c84;
+
+            --amber: #d69a45;
+            --amber-light: #f0b35a;
+
+            --border: #454d48;
+        }
+
+
+        /* ========================================
+           СБРОС
+        ======================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* ========================================
+           BODY
+        ======================================== */
+
+        body {
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(13, 17, 16, 0.95),
+                    rgba(13, 17, 16, 0.98)
+                ),
+
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(255,255,255,0.015) 4px
+                );
+
+            color: var(--text);
+
+            font-family: "Roboto Condensed", sans-serif;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px;
+        }
+
+
+        /* Фоновая сетка */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.018) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.018) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            pointer-events: none;
+
+            opacity: 0.45;
+        }
+
+
+        /* ========================================
+           ОСНОВНОЙ КОНТЕЙНЕР
+        ======================================== */
+
+        .shelter {
+            width: 100%;
+
+            max-width: 850px;
+
+            position: relative;
+        }
+
+
+        /* ========================================
+           ВЕРХНЯЯ ПАНЕЛЬ
+        ======================================== */
+
+        .header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 18px;
+
+            padding: 12px 18px;
+
+            background: var(--metal-dark);
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                inset 0 0 0 1px rgba(255,255,255,0.025),
+                0 8px 30px rgba(0,0,0,0.4);
+        }
+
+
+        .system-name {
+            font-family: "Share Tech Mono", monospace;
+
+            color: var(--amber);
+
+            font-size: 13px;
+
+            letter-spacing: 2px;
+        }
+
+
+        .status {
+            font-family: "Share Tech Mono", monospace;
+
+            color: #69716b;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .status::before {
+            content: "";
+
+            display: inline-block;
+
+            width: 7px;
+
+            height: 7px;
+
+            margin-right: 7px;
+
+            background: var(--amber);
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 8px var(--amber);
+        }
+
+
+        /* ========================================
+           ЗАГОЛОВОК
+        ======================================== */
+
+        .title {
+            text-align: center;
+
+            margin-bottom: 22px;
+        }
+
+
+        .title h1 {
+            font-family: "Share Tech Mono", monospace;
+
+            font-size: clamp(26px, 5vw, 42px);
+
+            font-weight: 400;
+
+            letter-spacing: 6px;
+
+            color: var(--text);
+        }
+
+
+        .title p {
+            margin-top: 8px;
+
+            color: var(--text-muted);
+
+            font-family: "Share Tech Mono", monospace;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* ========================================
+           КАРТОЧКА
+        ======================================== */
+
+        .card {
+            position: relative;
+
+            min-height: 600px;
+
+            padding: 32px 42px 42px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2b312f 0%,
+                    #202624 45%,
+                    #181d1b 100%
+                );
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                inset 0 0 0 1px rgba(255,255,255,0.025),
+                inset 0 0 50px rgba(0,0,0,0.3),
+                0 25px 60px rgba(0,0,0,0.55);
+
+            overflow: hidden;
+        }
+
+
+        /* Верхняя янтарная линия */
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            height: 3px;
+
+            background: var(--amber);
+
+            box-shadow:
+                0 0 18px rgba(214,154,69,0.5);
+        }
+
+
+        /* Текстура металла */
+
+        .card::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 5px,
+                    rgba(255,255,255,0.012) 6px
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* ========================================
+           УГЛОВЫЕ ЭЛЕМЕНТЫ
+        ======================================== */
+
+        .corner {
+            position: absolute;
+
+            width: 18px;
+
+            height: 18px;
+
+            border-color: #59615c;
+
+            opacity: 0.7;
+        }
+
+
+        .top-left {
+            top: 18px;
+            left: 18px;
+
+            border-top: 1px solid;
+            border-left: 1px solid;
+        }
+
+
+        .top-right {
+            top: 18px;
+            right: 18px;
+
+            border-top: 1px solid;
+            border-right: 1px solid;
+        }
+
+
+        .bottom-left {
+            bottom: 18px;
+            left: 18px;
+
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+
+        .bottom-right {
+            bottom: 18px;
+            right: 18px;
+
+            border-bottom: 1px solid;
+            border-right: 1px solid;
+        }
+
+
+        /* ========================================
+           НОМЕР
+        ======================================== */
+
+        .question-number {
+            position: absolute;
+
+            top: 25px;
+
+            right: 32px;
+
+            font-family: "Share Tech Mono", monospace;
+
+            color: #59615c;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* ========================================
+           КАТЕГОРИЯ
+        ======================================== */
+
+        .category {
+            position: relative;
+
+            z-index: 5;
+
+            display: inline-block;
+
+            margin-bottom: 22px;
+
+            padding: 5px 10px;
+
+            border-left: 2px solid var(--amber);
+
+            background: rgba(214,154,69,0.07);
+
+            color: var(--amber);
+
+            font-family: "Share Tech Mono", monospace;
+
+            font-size: 11px;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* ========================================
+           КАРТИНКА
+        ======================================== */
+
+        .image-wrapper {
+            position: relative;
+
+            z-index: 2;
+
+            width: 100%;
+
+            height: 250px;
+
+            margin-bottom: 25px;
+
+            overflow: hidden;
+
+            border: 1px solid #4b534e;
+
+            background: #111514;
+
+            box-shadow:
+                inset 0 0 35px rgba(0,0,0,0.7),
+                0 8px 20px rgba(0,0,0,0.25);
+        }
+
+
+        .question-image {
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            filter:
+                grayscale(35%)
+                brightness(65%)
+                contrast(110%);
+
+            opacity: 0.88;
+
+            transition:
+                transform 0.8s ease,
+                opacity 0.5s ease;
+        }
+
+
+        /* Затемнение изображения */
+
+        .image-wrapper::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(13,17,16,0.05),
+                    rgba(13,17,16,0.45)
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(214,154,69,0.06),
+                    transparent 30%,
+                    transparent 70%,
+                    rgba(0,0,0,0.25)
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* Техническая надпись */
+
+        .image-label {
+            position: absolute;
+
+            z-index: 3;
+
+            bottom: 9px;
+
+            left: 12px;
+
+            color: rgba(216,216,207,0.55);
+
+            font-family: "Share Tech Mono", monospace;
+
+            font-size: 8px;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        /* ========================================
+           ВОПРОС
+        ======================================== */
+
+        .question {
+            position: relative;
+
+            z-index: 5;
+
+            font-size: clamp(21px, 3vw, 28px);
+
+            line-height: 1.45;
+
+            font-weight: 400;
+
+            color: var(--text);
+        }
+
+
+        /* ========================================
+           НИЖНЯЯ ПАНЕЛЬ
+        ======================================== */
+
+        .bottom-panel {
+            margin-top: 18px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .counter {
+            font-family: "Share Tech Mono", monospace;
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+
+            letter-spacing: 1.5px;
+
+            white-space: nowrap;
+        }
+
+
+        /* ========================================
+           ПРОГРЕСС
+        ======================================== */
+
+        .progress {
+            flex: 1;
+
+            height: 3px;
+
+            background: #252a28;
+
+            overflow: hidden;
+        }
+
+
+        .progress-bar {
+            width: 10%;
+
+            height: 100%;
+
+            background: var(--amber);
+
+            box-shadow:
+                0 0 10px rgba(214,154,69,0.5);
+
+            transition: width 0.4s ease;
+        }
+
+
+        /* ========================================
+           КНОПКА
+        ======================================== */
+
+        .next-button {
+            margin-top: 22px;
+
+            width: 100%;
+
+            padding: 16px 20px;
+
+            border: 1px solid #59615c;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #2b312f,
+                    #1b211f
+                );
+
+            color: var(--text);
+
+            font-family: "Share Tech Mono", monospace;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition:
+                border-color 0.25s,
+                color 0.25s,
+                background 0.25s,
+                box-shadow 0.25s;
+        }
+
+
+        .next-button:hover {
+            border-color: var(--amber);
+
+            color: var(--amber-light);
+
+            box-shadow:
+                0 0 20px rgba(214,154,69,0.08);
+        }
+
+
+        .next-button:active {
+            transform: translateY(1px);
+        }
+
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+
+        .footer {
+            margin-top: 18px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #535b56;
+
+            font-family: "Share Tech Mono", monospace;
+
+            font-size: 9px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* ========================================
+           АНИМАЦИЯ
+        ======================================== */
+
+        .pull-card {
+            animation: pullCard 0.65s ease-out;
+        }
+
+
+        @keyframes pullCard {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translateY(60px)
+                    rotateX(10deg)
+                    scale(0.96);
+            }
+
+            55% {
+                opacity: 1;
+
+                transform:
+                    translateY(-6px)
+                    rotateX(-1deg)
+                    scale(1.01);
+            }
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    rotateX(0)
+                    scale(1);
+            }
+        }
+
+
+        /* ========================================
+           МОБИЛЬНАЯ ВЕРСИЯ
+        ======================================== */
+
+        @media (max-width: 650px) {
+
+            body {
+                padding: 15px;
+            }
+
+
+            .header {
+                padding: 10px 12px;
+            }
+
+
+            .status {
+                display: none;
+            }
+
+
+            .card {
+                min-height: 600px;
+
+                padding:
+                    35px 25px 30px;
+            }
+
+
+            .image-wrapper {
+                height: 200px;
+            }
+
+
+            .question {
+                font-size: 21px;
+
+                line-height: 1.4;
+            }
+
+
+            .question-number {
+                right: 24px;
+            }
+
+
+            .footer {
+                flex-direction: column;
+
+                gap: 6px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="shelter">
+
+
+        <!-- =====================================
+             ВЕРХНЯЯ ПАНЕЛЬ
+        ====================================== -->
+
+        <header class="header">
+
+            <div class="system-name">
+                SILO // DISCUSSION
+            </div>
+
+            <div class="status">
+                СИСТЕМА ОБСУЖДЕНИЯ // АКТИВНА
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             ЗАГОЛОВОК
+        ====================================== -->
+
+        <section class="title">
+
+            <h1>
+                УБЕЖИЩЕ
+            </h1>
+
+            <p>
+                ВОПРОСЫ ДЛЯ ОБСУЖДЕНИЯ
+            </p>
+
+        </section>
+
+
+        <!-- =====================================
+             КАРТОЧКА
+        ====================================== -->
+
+        <section
+            class="card"
+            id="card"
+        >
+
+            <span class="corner top-left"></span>
+
+            <span class="corner top-right"></span>
+
+            <span class="corner bottom-left"></span>
+
+            <span class="corner bottom-right"></span>
+
+
+            <div
+                class="question-number"
+                id="questionNumber"
+            >
+                QUESTION_01
+            </div>
+
+
+            <div
+                class="category"
+                id="category"
+            >
+                Про Убежище
+            </div>
+
+
+            <!-- КАРТИНКА -->
+
+            <div class="image-wrapper">
+
+                <img
+                    class="question-image"
+                    id="questionImage"
+                    src=""
+                    alt="Иллюстрация к вопросу"
+                >
+
+                <div class="image-label">
+                    ARCHIVE IMAGE // SHELTER
+                </div>
+
+            </div>
+
+
+            <!-- ВОПРОС -->
+
+            <div
+                class="question"
+                id="question"
+            >
+                Загрузка вопроса...
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             ПРОГРЕСС
+        ====================================== -->
+
+        <div class="bottom-panel">
+
+            <div
+                class="counter"
+                id="counter"
+            >
+                ВОПРОС 01 / 10
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             КНОПКА
+        ====================================== -->
+
+        <button
+            class="next-button"
+            onclick="showNextQuestion()"
+        >
+            [ ВЫТЯНУТЬ СЛЕДУЮЩИЙ ВОПРОС ]
+        </button>
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <footer class="footer">
+
+            <span>
+                ACCESS LEVEL: DISCUSSION
+            </span>
+
+            <span>
+                PRESS SPACE / ENTER
+            </span>
+
+        </footer>
+
+    </main>
+
+
+    <script>
+
+
+        /* ==================================================
+           
+           ⭐ НАСТРОЙКИ ВОПРОСОВ ⭐
+           
+           ЗДЕСЬ ТЫ БУДЕШЬ МЕНЯТЬ ВОПРОСЫ И КАРТИНКИ.
+           
+           БОЛЬШЕ НИЖЕ НИЧЕГО МЕНЯТЬ НЕ НУЖНО.
+           
+        ================================================== */
+
+
+        const questions = [
+
+
+            /* ==========================================
+               ВОПРОС 1
+            ========================================== */
+
+            {
+                category: "Про Убежище",
+
+                text: "На каком этаже Убежища вы хотели бы жить, почему? Этаж влияет на жизнь и положение человека в обществе?",
+
+                image: "images/silo-underground-community.jpg"
+            },
+
+
+            /* ==========================================
+               ВОПРОС 2
+            ========================================== */
+
+            {
+                category: "Про Убежище",
+
+                text: "Почему людям было важно верить, что внешний мир смертельно опасен? Что изменилось бы, если бы они перестали в это верить?",
+
+                image: "images/silo-oyelowo.jpg"
+            },
+
+
+            /* ==========================================
+               ВОПРОС 3
+            ========================================== */
+
+            {
+                category: "Про очистку",
+
+                text: "Почему люди соглашаются добровольно выйти наружу и провести очистку, если знают, что, скорее всего, умрут? Что для них в этот момент важнее — долг, страх, надежда или желание увидеть правду?",
+
+                image: "images/DKfWrPKTirit2y8ueNuDGg.jpg"
+            },
+
+
+            /* ==========================================
+               ВОПРОС 4
+            ========================================== */
+
+            {
+                category: "Про восстание",
+
+                text: "Почему восстание началось с нижних этажей Убежища? Случайность или в этом есть символический смысл?",
+
+                image: "images/7dc62cccd11ba2bcbd22abdf73901188.jpg"
+            },
+
+
+            /* ==========================================
+               ВОПРОС 5
+            ========================================== */
+
+            {
+                category: "Про Бернарда",
+
+                text: "Если бы вы были Бернардом и знали, что раскрытие правды может привести к хаосу, вы бы рассказали её людям или продолжили скрывать? Почему?",
+
+                image: "images/Vh3FxxTqFB4u1yns7fUKLQ.jpg"
+            },
+
+
+            /* ==========================================
+               ВОПРОС 6
+            ========================================== */
+
+            {
+                category: "Про Джульетту",
+
+                text: "В какой момент Джулс перестала для вас быть просто человеком, который хочет узнать правду, и стала человеком, готовым изменить систему? Какие её качества помогли ей, а какие, наоборот, создавали проблемы?",
+
+                image: "images/k0Q0plOWDD9uEKBITpQ.jpg"
+            },
+
+
+            /* ==========================================
+               ВОПРОС 7
+            ========================================== */
+
+            {
+                category: "Жизнь за пределами Убежища",
+
+                text: "Когда Джулс впервые оказывается снаружи, меняется ли ваше восприятие происходящего? Что для вас было самым неожиданным в сценах за пределами Убежища?",
+
+                image: "images/08074703022025_5f0ad4f5ebaee97d252d5f424bfceaca082fe7ad.jpg"
+            },
+
+
+            /* ==========================================
+               ВОПРОС 8
+            ========================================== */
+
+            {
+                category: "Про мир убежища",
+
+                text: "Какое впечатление на вас произвёл мир Убежища в начале книги? Что в нём показалось вам самым необычным или тревожным?",
+
+                image: "images/Hq020kUixmhmSrb1GH2uMw.jpg"
+            },
+
+
+            /* ==========================================
+               ВОПРОС 9
+            ========================================== */
+
+            {
+                category: "Про детей",
+
+                text: "Что вы почувствовали, когда стало известно о выживших детях? Изменило ли это ваше восприятие происходящего в Убежищах?",
+
+                image: "images/Apple's Best Post-Apocalyptic Show Finally Solves a Crucial Mystery.jpg"
+            },
+
+
+            /* ==========================================
+               ВОПРОС 10
+            ========================================== */
+
+            {
+                category: "Философский",
+
+                text: "Если бы вы жили в Убежище и вам предложили никогда не задавать вопросов и спокойно прожить жизнь по установленным правилам — вы бы согласились?",
+
+                image: "images/1721926.jpg"
+            }
+
+        ];
+
+
+        /* ==================================================
+           
+           ⭐ ДАЛЬШЕ КОД РАБОТАЕТ АВТОМАТИЧЕСКИ ⭐
+           
+           СЮДА ТЕБЕ ЗАХОДИТЬ НЕ НУЖНО.
+           
+        ================================================== */
+
+
+        let shuffledQuestions = [];
+
+        let currentIndex = 0;
+
+
+        /* ========================================
+           ПЕРЕМЕШИВАНИЕ
+        ======================================== */
+
+        function shuffleQuestions() {
+
+            shuffledQuestions = [...questions];
+
+
+            for (
+                let i = shuffledQuestions.length - 1;
+                i > 0;
+                i--
+            ) {
+
+                const j =
+                    Math.floor(
+                        Math.random() * (i + 1)
+                    );
+
+
+                [
+                    shuffledQuestions[i],
+                    shuffledQuestions[j]
+                ] =
+                [
+                    shuffledQuestions[j],
+                    shuffledQuestions[i]
+                ];
+
+            }
+
+
+            currentIndex = 0;
+        }
+
+
+        /* ========================================
+           ПОКАЗАТЬ СЛЕДУЮЩИЙ ВОПРОС
+        ======================================== */
+
+        function showNextQuestion() {
+
+
+            if (
+                currentIndex >=
+                shuffledQuestions.length
+            ) {
+
+                shuffleQuestions();
+
+            }
+
+
+            const question =
+                shuffledQuestions[currentIndex];
+
+
+            /* Находим элементы страницы */
+
+            const card =
+                document.getElementById("card");
+
+
+            const category =
+                document.getElementById("category");
+
+
+            const questionText =
+                document.getElementById("question");
+
+
+            const questionImage =
+                document.getElementById("questionImage");
+
+
+            const questionNumber =
+                document.getElementById("questionNumber");
+
+
+            const counter =
+                document.getElementById("counter");
+
+
+            const progressBar =
+                document.getElementById("progressBar");
+
+
+            /* ==================================
+               АНИМАЦИЯ
+            ================================== */
+
+            card.classList.remove("pull-card");
+
+            void card.offsetWidth;
+
+            card.classList.add("pull-card");
+
+
+            /* ==================================
+               МЕНЯЕМ ТЕКСТ
+            ================================== */
+
+            category.textContent =
+                question.category;
+
+
+            questionText.textContent =
+                question.text;
+
+
+            /* ==================================
+               МЕНЯЕМ КАРТИНКУ
+            ================================== */
+
+            questionImage.src =
+                question.image;
+
+
+            /* ==================================
+               НОМЕР
+            ================================== */
+
+            const number =
+                String(currentIndex + 1)
+                    .padStart(2, "0");
+
+
+            questionNumber.textContent =
+                `QUESTION_${number}`;
+
+
+            counter.textContent =
+                `ВОПРОС ${number} / ${questions.length}`;
+
+
+            /* ==================================
+               ПРОГРЕСС
+            ================================== */
+
+            const progress =
+                (
+                    (currentIndex + 1)
+                    /
+                    questions.length
+                ) * 100;
+
+
+            progressBar.style.width =
+                `${progress}%`;
+
+
+            currentIndex++;
+
+        }
+
+
+        /* ========================================
+           ЗАПУСК
+        ======================================== */
+
+        shuffleQuestions();
+
+        showNextQuestion();
+
+
+        /* ========================================
+           КЛАВИАТУРА
+        ======================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.code === "Space" ||
+                    event.code === "Enter"
+                ) {
+
+                    event.preventDefault();
+
+                    showNextQuestion();
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
